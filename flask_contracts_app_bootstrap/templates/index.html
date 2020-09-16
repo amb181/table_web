@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class ="row">
+    <div class="col-8">
+        <div class="card card-body table-wrap" style="height: 700px;">
+            <table class="table table-responsive table-striped table-hover table-bordered table-sm">
+                <caption>List of agreements</caption>
+                <thead>
+                    <tr class="table-primary">
+                        <td></td>
+                        <!-- <th>ID</th> -->
+                        <th>Agreement_Name</th>
+                        <th>Parent_agreement_ID</th>
+                        <th>Agreement_ID</th>
+                        <th>Agreement_type</th>
+                        <th>Supplier_name</th>
+                        <th>Agreement_Supplier_name</th>
+                        <th>MUSID</th>
+                        <!-- <td>Summary</td> -->
+                        <th>Payment_terms_daysn</th>
+                        <th>Payment_terms_dayst</th>
+                        <th>Pages</th>
+                        <!-- <td>Digital_file</td> -->
+                        <th>File_path</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form action="/compare" method = "POST">
+                    {% for agreement in agreements %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="check" value="{{ agreement.0 }}" autocomplete="off"/>
+                                <a href="javascript:show_summary({{ agreement.0 }});" style="font-size:12px;">Summary</a>
+                                <a href="javascript:show_contract({{ agreement.0 }});" style="font-size:12px;">File</a>
+                            </td>
+                            <!-- <td>{{ agreement.0 }}</td> -->
+                            <td>{{ agreement.1 }}</td>
+                            <td>{{ agreement.2 }}</td>
+                            <td>{{ agreement.3 }}</td>
+                            <td>{{ agreement.4 }}</td>
+                            <td>{{ agreement.5 }}</td>
+                            <td>{{ agreement.6 }}</td>
+                            <td>{{ agreement.7 }}</td>
+                            <!-- <td>{{ agreement.8 }}</td> -->
+                            <td>{{ agreement.9 }}</td>
+                            <td>{{ agreement.10 }}</td>
+                            <td>{{ agreement.11 }}</td>
+                            <!-- <td>{{ agreement.12 }}</td> -->
+                            <td>{{ agreement.13 }}</td>
+                        </tr>
+                    {% endfor %}
+                    <button class="btn btn-success border border-success rounded w-25" type="submit" name="submit-button">Compare</button>
+                </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card card-body" style="height: 700px;">
+            <pre id="contract"></pre>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
